@@ -20,6 +20,22 @@ The bug is a type confusion in V8's handling of sealed/frozen element kinds. Exo
 * **32-bit port / 32비트 변환:** this repository
 * **Tested on:** Windows 10, **32-bit** Chrome 76.0.3809.100 / 76.0.3809.132
 
+## 이 문서의 목적 / Purpose
+
+단순히 동작하는 익스플로잇을 하나 더 공개하려는 것이 아니라, **64비트 익스플로잇을 32비트로 직접 이식해 보는 과정을 통해 크롬(V8) 익스플로잇에 대한 이해의 폭을 넓히는 것**이 이 자료의 목적입니다.
+
+남이 만든 64비트 익스플로잇을 그대로 실행해 보는 것과, 그것을 다른 아키텍처로 옮기는 것은 요구되는 이해도가 다릅니다. 포팅을 하려면 각 단계가 *왜* 그렇게 동작하는지를 알아야 하고, 그 과정에서 자연스럽게 다음을 파고들게 됩니다.
+
+* V8의 객체 메모리 레이아웃 — Map, elements, properties backing store가 힙에 어떻게 배치되는가
+* 32비트에서의 SMI/포인터 태깅과 double 표현 — 왜 하나의 double(64비트) 안에 32비트 포인터 두 개를 넣어 다뤄야 하는가
+* 64비트 기준으로 하드코딩된 오프셋·인덱스를 32비트 기준으로 어떻게 다시 계산하는가
+* `WebAssembly.Instance` → `WasmExportedFunctionData` → RWX 페이지로 이어지는 코드 실행 체인이 아키텍처별로 어떻게 달라지는가
+* d8과 실제 브라우저에서 힙 상태가 어떻게 달라지고, 그것이 익스플로잇 신뢰성에 어떤 영향을 주는가
+
+첨부한 발표 자료(`.pptx`)는 이 변환 과정을 단계별로 따라가며 정리한 것으로, 결과물인 코드보다 **거기까지 가는 과정**에 초점을 맞추고 있습니다.
+
+The point of this repository is not to publish yet another working exploit. It is to use the **port from 64-bit to 32-bit as a vehicle for understanding Chrome/V8 exploitation more deeply** — running someone else's exploit teaches you far less than moving it to a different architecture, which forces you to understand *why* every step works: V8 object layout, SMI/pointer tagging and how a single 64-bit double must carry two 32-bit pointers, recomputing hardcoded offsets, and how the WASM RWX code-execution chain differs per architecture. The attached slide deck documents that process step by step, focusing on the reasoning rather than the final code.
+
 ## 파일 구성 / Files
 
 | File | Description |
