@@ -51,7 +51,7 @@ The attached slide deck (`.pptx`) walks through the conversion step by step; it 
 | `exp_32bit.html` | **KR** 익스플로잇 진입점. `print()` / `hex()` / `hexdump()` 헬퍼를 정의하고 `chrome_992914_32bit.js`를 로드합니다.<br>**EN** Exploit entry point. Defines the `print()` / `hex()` / `hexdump()` helpers and loads `chrome_992914_32bit.js`. |
 | `chrome_992914_32bit.js` | **KR** 브라우저용 32비트 익스플로잇 본체 (type confusion → addrof/AAR/AAW → WASM RWX → shellcode).<br>**EN** The 32-bit exploit itself, for the browser (type confusion → addrof/AAR/AAW → WASM RWX → shellcode). |
 | `d8_32bit_ex.js` | **KR** d8(V8 셸)에서 디버깅용으로 쓰던 변형본. 로그가 더 자세하고 일부 단계가 주석 처리되어 있습니다.<br>**EN** A variant used for debugging under d8 (the V8 shell): more verbose logging, with some stages commented out. |
-| `How_to_convert_..._32-bit_on_Windows.pptx` | **KR** 64비트 → 32비트 변환 과정을 정리한 발표 자료 (약 34MB).<br>**EN** Slide deck documenting the 64-bit → 32-bit conversion (~34 MB). |
+| `How_to_convert_Chrome_Issue992914_exploit_to_32-bit_on_Windows.pptx` | **KR** 64비트 → 32비트 변환 과정을 정리한 발표 자료 (약 34MB).<br>**EN** Slide deck documenting the 64-bit → 32-bit conversion (~34 MB). |
 
 ## 동작 방식 요약 / How it works
 
